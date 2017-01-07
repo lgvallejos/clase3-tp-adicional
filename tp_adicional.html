@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tp adicional</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<!--
+
+var arr1 = ["Sherlyn","Sarita","Hortense","Velma","Soraya","Jama","Evelina","Summer","Venus","Lana","Nohemi","Christel","Rodrick","Brenda","Jimmy","Irving","Marlena","Patti","Iola","Hattie","Willetta","Lindy","Eryn","Wilhelmina"];
+
+
+var arr2 = ["Sherlyn","Sarita","Hortense""Venus","Lana","Nohemi","Christel","Rodrick","Brenda","Jimmy","Irving","Marlena","Patti","Iola","Hattie","Willetta","Lindy","Eryn","Wilhelmina","Kandy","Krystyna","Ana","Lien","Rosa","Tammera"];
+
+Teniendo estos 2 arreglos, mostrar un listado en pantalla de las personas que no esten en "ambos" arreglos.
+
+por ejemplo: 
+
+arr1 = ['mau','gabi','benja','tati']
+arr2 = ['nati','mau','gabi','benja','nico']
+
+el resultado deberia ser: tati, nati, nico
+
+NOTAS:
+
+- Se debe generar una funcion que reciba 2 arreglos por parametros y retorne un arreglo con las personas que no esten en "ambos" arreglos.
+
+- Se debe mostrar en pantalla en una etiqueta HTML y se debe trabajar el arreglo retornado para que se muestre cada nombre separado por comas. (transformar el array a string).
+
+- si la funcion no devuelve ningun nombre, se debe mostrar un mensaje en consola que indique no todos los nombres coinsiden en ambas listas.
+
+- Si alguno de los arreglos tiene mas de 20 posiciones y menos de 3, debera mostrar un error en consola. 
+
+Exito :)-->
+
+
+
+<div class="container">
+  <div class="row" style="margin-top:100px;">
+  	<div class="col-md-8 col-md-offset-2">
+  		<div class="panel panel-default">
+		  <div class="panel-heading">Array resultado</div>
+		  <div class="panel-body" id="resultado">
+		    
+		  </div>
+		</div>
+  	</div>
+  </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>
+	
+	var arr1 = ["Sherlyn","Sarita","Hortense","Velma","Soraya","Jama","Evelina","Summer","Venus","Lana","Nohemi","Christel","Rodrick","Brenda","Jimmy","Irving","Marlena","Patti","Iola","Hattie","Willetta","Lindy","Eryn","Wilhelmina"];
+	var arr2 = ["Sherlyn","Sarita","Hortense","Venus","Lana","Nohemi","Christel","Rodrick","Brenda","Jimmy","Irving","Marlena","Patti","Iola","Hattie","Willetta","Lindy","Eryn","Wilhelmina","Kandy","Krystyna","Ana","Lien","Rosa","Tammera"];
+	
+	var Resultado = BorrarDuplicados(arr1,arr2);
+	//alert(Resultado);
+	var MuestroValor = document.getElementById("resultado");
+    MuestroValor.innerHTML = Resultado.toString();
+
+
+
+	function BorrarDuplicados(arreglo1, arreglo2) {
+
+	if (arreglo1.length > 20 && arreglo1.length < 3) {
+
+		console.log("error parámetro 1")
+	}
+
+	if (arreglo2.length > 20 && arreglo2.length < 3) {
+
+		console.log("error parámetro 2")
+	}
+
+	var arr3 = [];
+	arr3 = arreglo1.concat(arreglo2);
+	
+	for (i in arr3) {
+		//inicializo un contador, se resetea cada vez que salgo del ciclo j
+		var count= 0;
+		for (j in arr3) {
+			//comparo el elemnto i con cada elemento restante mediante un nuevo for
+			if (arr3[i] == arr3[j] ) {
+				//por cada coincidencia incremento el contador
+				count++
+				//siempre habrá mínimo un elemento igual porque inicialmente se compara contra sí mismo
+				if (count > 1) {
+					//si en cuentra un elemento igual a parte de sí mismo cambio el valor por la etiqueta "igual" que luego usaré para eliminar
+					
+					arr3.splice(j,1,"igual");
+				}
+				
+			}
+
+			if (count > 1) {
+					//le pongo una etiqueta para el borrado al primer elemento comparado si se encontraron duplicados
+					
+					arr3.splice(i,1,"igual");
+				}
+
+		}
+
+	}
+
+	//bucle para borrar los duplicados
+	while (arr3.indexOf("igual")>-1) {
+		//elimino los que tengan el valor "igual" es decir los duplicados
+		arr3.splice(arr3.indexOf("igual"), 1);
+
+	}
+
+	if (arr3.length == 0) {
+
+		console.log("Todos los nombres coinciden en ambas listas");
+	}
+	return arr3;
+
+
+	}
+
+</script>
+	
+</body>
+</html>
+
+
+
+
